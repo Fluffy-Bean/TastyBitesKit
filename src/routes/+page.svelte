@@ -6,7 +6,11 @@
 
     import MenuItemGrid from "$lib/components/MenuItemGrid.svelte";
 
-    export let data: PageServerData;
+    interface Props {
+        data: PageServerData;
+    }
+
+    let { data }: Props = $props();
 
     let leafletMap: Map;
 

@@ -12,9 +12,13 @@
     import type { Item } from "$lib/types";
     import { Labels } from "$lib/types";
 
-    export let item: Item;
+    interface Props {
+        item: Item;
+    }
 
-    let element: HTMLElement;
+    let { item }: Props = $props();
+
+    let element: HTMLElement = $state();
 
     function keepSquare() {
         element.style.height = ""; // For whatever reason, need to remove the height first...

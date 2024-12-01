@@ -1,8 +1,12 @@
 <script lang="ts">
-    import {PaperPlaneRight, SealWarning, SealCheck, CaretDown} from "phosphor-svelte";
+    import {
+        PaperPlaneRight,
+        SealWarning,
+        SealCheck,
+        CaretDown,
+    } from "phosphor-svelte";
 
-    import {postContactEmail} from "$lib/test-api";
-    import {expandOnTyping} from "$lib/utils";
+    import { expandOnTyping } from "$lib/utils";
     import DropDown from "$lib/components/DropDown.svelte";
 
     const minMessageLength = 150;
@@ -38,7 +42,7 @@
     function onSubmit(e: Event) {
         e.preventDefault();
         try {
-            formMessage = postContactEmail(name, email, reason, message)
+            // formMessage = postContactEmail(name, email, reason, message)
         } catch (error) {
             validateName();
             validateEmail();
@@ -178,13 +182,13 @@
 
     #name, #email {
         width: 300px;
-        max-width: calc(100vw - (vars.$spacing-normal*2));
+        max-width: calc(100vw - calc(vars.$spacing-normal*2));
 
     }
 
     #message {
         min-width: 250px;
-        max-width: calc(100vw - (vars.$spacing-normal*2));
+        max-width: calc(100vw - calc(vars.$spacing-normal*2));
         resize: none;
         overflow: hidden;
     }

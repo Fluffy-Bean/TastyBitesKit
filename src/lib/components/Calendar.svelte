@@ -1,6 +1,5 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte";
-
     import { ArrowArcLeft, ArrowArcRight } from "phosphor-svelte";
 
     const dispatcher = createEventDispatcher();
@@ -28,36 +27,40 @@
         "December",
     ];
 
-    export let notBefore: Date;
-    export let selectedDate: Date;
+    interface Props {
+        notBefore: Date;
+        selectedDate: Date;
+    }
+
+    let { notBefore, selectedDate = $bindable() }: Props = $props();
     let todayDate = new Date();
 
     let viewingDate = new Date();
-    let viewingYear = viewingDate.getFullYear();
-    let viewingMonth = viewingDate.getMonth();
+    let viewingYear = $state(viewingDate.getFullYear());
+    let viewingMonth = $state(viewingDate.getMonth());
 
-    $: firstDayOffset = new Date(viewingYear, viewingMonth, 0).getDay();
-    $: monthLength = new Date(viewingYear, viewingMonth + 1, 0).getDate();
+    let firstDayOffset = $derived(new Date(viewingYear, viewingMonth, 0).getDay());
+    let monthLength = $derived(new Date(viewingYear, viewingMonth + 1, 0).getDate());
 
-    $: isToday = (day: number) => {
+    let isToday = $derived((day: number) => {
         return (
             day === todayDate.getDate()
             && viewingMonth === todayDate.getMonth()
             && viewingYear === todayDate.getFullYear()
         );
-    }
-    $: isSelected = (day: number) => {
+    })
+    let isSelected = $derived((day: number) => {
         return (
             selectedDate
             && day === selectedDate.getDate()
             && viewingMonth === selectedDate.getMonth()
             && viewingYear === selectedDate.getFullYear()
         );
-    }
-    $: isBefore = (day: number) => {
+    })
+    let isBefore = $derived((day: number) => {
         const thisDate = new Date(viewingYear, viewingMonth, day);
         return notBefore && thisDate < notBefore;
-    }
+    })
 
     function backMonth() {
         viewingMonth -= 1;
@@ -91,8 +94,8 @@
 <div class="calendar">
     <div class="calendar-header">
         <p>{monthLabels[viewingMonth]}&nbsp;<span>{viewingYear}</span></p>
-        <button on:click={backMonth}><ArrowArcLeft weight="fill" /></button>
-        <button on:click={forwardsMonth}><ArrowArcRight weight="fill" /></button>
+        <button onclick={backMonth}><ArrowArcLeft weight="fill" /></button>
+        <button onclick={forwardsMonth}><ArrowArcRight weight="fill" /></button>
     </div>
     <div class="calendar-weeks">
         {#each weekLabels as label}
@@ -103,7 +106,7 @@
         {#each {length:firstDayOffset} as _}<div></div>{/each}
         {#each {length:monthLength} as _, day}
             <div class:today={isToday(day+1)} class:selected={isSelected(day+1)} class:before={isBefore(day+1)}>
-                <button on:click={dateSelected} data-day={day+1}>{day+1}</button>
+                <button onclick={dateSelected} data-day={day+1}>{day+1}</button>
             </div>
         {/each}
     </div>

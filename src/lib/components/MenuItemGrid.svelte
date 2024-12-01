@@ -2,7 +2,11 @@
     import { type Item } from "$lib/types";
     import MenuItem from "./MenuItem.svelte";
 
-    export let items: Item[];
+    interface Props {
+        items: Item[];
+    }
+
+    let { items }: Props = $props();
 </script>
 
 <ul>

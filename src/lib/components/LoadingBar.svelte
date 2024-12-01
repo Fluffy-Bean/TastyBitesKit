@@ -1,5 +1,9 @@
 <script lang="ts">
-    export let bottom = false
+    interface Props {
+        bottom?: boolean;
+    }
+
+    let { bottom = false }: Props = $props();
 </script>
 
 <div class="loader" class:bottom={bottom}>

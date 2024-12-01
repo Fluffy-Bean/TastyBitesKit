@@ -1,10 +1,9 @@
 import type { PageServerLoad } from "./$types";
-import { getPopularToday } from "$lib/test-api";
 
-export const load: PageServerLoad = async ({}) => {
-    const popularToday = await getPopularToday();
+export const load: PageServerLoad = async ({ fetch }) => {
+    const popularToday = await fetch("/api/popularToday");
 
     return {
-        popularToday: popularToday,
+        popularToday: await popularToday.json(),
     };
 };

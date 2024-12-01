@@ -15,7 +15,11 @@
     import { Labels } from "$lib/types";
     import CartSvelte from "$lib/cart.svelte";
 
-    export let item: CartItem;
+    interface Props {
+        item: CartItem;
+    }
+
+    let { item }: Props = $props();
 
     function reduce() {
         if (item.amount > 1) {
@@ -49,11 +53,11 @@
         <ul class="basket-item-data">
             <li class="basket-item-name"><a href="/item/{item.data.uuid}">{item.data.name}</a></li>
             <li class="basket-item-controls">
-                <button class="button" class:disabled={item.amount <= 1} on:click={reduce}><Minus /></button>
+                <button class="button" class:disabled={item.amount <= 1} onclick={reduce}><Minus /></button>
                 <p>{item.amount}</p>
-                <button class="button" class:disabled={item.amount >= 99} on:click={add}><Plus /></button>
+                <button class="button" class:disabled={item.amount >= 99} onclick={add}><Plus /></button>
                 <hr>
-                <button class="button evil" on:click={yeet}><Trash /></button>
+                <button class="button evil" onclick={yeet}><Trash /></button>
             </li>
             <li class="basket-item-price">£{(item.data.price * item.amount).toFixed(2)} (£{item.data.price.toFixed(2)})</li>
         </ul>

@@ -1,13 +1,20 @@
 <script lang="ts">
-    export let image: string;
-    export let toRight = false;
+    import type { Snippet } from 'svelte';
+
+    interface Props {
+        image: string;
+        toRight?: boolean;
+        children?: Snippet;
+    }
+
+    let { image, toRight = false, children }: Props = $props();
 </script>
 
 <div class="image-with-text" class:toRight={toRight}>
     <img src={image} alt="With Text">
 
     <div class="container">
-        <slot></slot>
+        {@render children?.()}
     </div>
 </div>
 

@@ -1,14 +1,8 @@
 <script lang="ts">
-    import { getMenuItems } from "$lib/test-api";
-    import LoadingBar from "$lib/components/LoadingBar.svelte";
     import MenuList from "$lib/components/MenuItemGrid.svelte";
     import DropDown from "$lib/components/DropDown.svelte";
 
-    let items = getMenuItems();
-
-    function reloadMenu() {
-        items = getMenuItems();
-    }
+    let { data } = $props();
 </script>
 
 <div class="menu">
@@ -87,23 +81,17 @@
     </div>
 
     <div id="menu-list">
-        {#await items}
-            <LoadingBar />
-        {:then items}
-            {#each items as section, i}
-                <h2>{section.name}</h2>
-                {#if section.items.length > 0}
-                    <MenuList items={section.items} />
-                {:else}
-                    <p>No results</p>
-                {/if}
-                {#if i !== items.length -1}
-                    <div class="spacer"></div>
-                {/if}
-            {/each}
-        {:catch error}
-            <p>{error}</p>
-        {/await}
+        {#each data.menuItems as section, i}
+            <h2>{section.name}</h2>
+            {#if section.items.length > 0}
+                <MenuList items={section.items} />
+            {:else}
+                <p>No results</p>
+            {/if}
+            {#if i !== data.menuItems.length -1}
+                <div class="spacer"></div>
+            {/if}
+        {/each}
     </div>
 </div>
 
