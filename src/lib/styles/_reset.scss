@@ -1,0 +1,144 @@
+@use "sass:color";
+@use "vars";
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    text-rendering: optimizeLegibility;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%;
+    font-weight: vars.$font-weight-normal;
+    font-family: vars.$font-family;
+}
+
+body,
+#app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    background-color: color.adjust(vars.$color-background, $lightness: -10%);
+    background-image: url("/assets/Noise.png");
+    color: vars.$color-on-background;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    padding-bottom: vars.$spacing-small;
+    text-shadow: 0 1px 0.5px rgba(vars.$color-dark, 0.3);
+}
+h1 {
+    font-size: vars.$font-size-h1;
+    font-weight: vars.$font-weight-bolder;
+}
+h2 {
+    font-size: vars.$font-size-h2;
+    font-weight: vars.$font-weight-bold;
+}
+h3 {
+    font-size: vars.$font-size-h3;
+    font-weight: vars.$font-weight-normal;
+}
+h4 {
+    font-size: vars.$font-size-h4;
+    font-weight: vars.$font-weight-normal;
+}
+h5 {
+    font-size: vars.$font-size-h5;
+    font-weight: vars.$font-weight-normal;
+}
+h6 {
+    font-size: vars.$font-size-h6;
+    font-weight: vars.$font-weight-normal;
+}
+p {
+    font-size: vars.$font-size-p;
+    font-weight: vars.$font-weight-normal;
+    text-shadow: 0 1px 0.5px rgba(vars.$color-dark, 0.3);
+
+    a {
+        text-decoration: none;
+        text-shadow: 0 1px 0.5px rgba(vars.$color-dark, 0.3);
+        color: vars.$color-primary;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+small {
+    font-size: vars.$font-size-small;
+    font-weight: vars.$font-weight-thin;
+}
+
+hr {
+    height: 1px;
+    border: 0 transparent;
+    background-color: rgba(vars.$color-dark, 0.1);
+}
+
+button {
+    font-family: vars.$font-family;
+    font-size: vars.$font-size-small;
+}
+
+.spacer {
+    min-width: vars.$spacing-large;
+    width: vars.$spacing-large;
+    max-width: vars.$spacing-large;
+    min-height: vars.$spacing-large;
+    height: vars.$spacing-large;
+    max-height: vars.$spacing-large;
+
+    &.half {
+        min-width: vars.$spacing-large / 2;
+        width: vars.$spacing-large / 2;
+        max-width: vars.$spacing-large / 2;
+        min-height: vars.$spacing-large / 2;
+        height: vars.$spacing-large / 2;
+        max-height: vars.$spacing-large / 2;
+    }
+}
+
+.section {
+    padding: vars.$spacing-normal;
+
+    &.large {
+        padding: vars.$spacing-large;
+    }
+    &.small {
+        padding: vars.$spacing-small;
+    }
+    &.xsmall {
+        padding: vars.$spacing-xsmall;
+    }
+}
+
+main {
+    margin-left: auto;
+    margin-right: auto;
+    padding: vars.$spacing-normal;
+
+    width: 100%;
+    max-width: vars.$sizing-default-width;
+
+    position: relative;
+    flex-grow: 1;
+
+    &.nav-space {
+        margin-top: vars.$sizing-navigation-height;
+    }
+    &.full-width {
+        max-width: vars.$sizing-full-width;
+    }
+}

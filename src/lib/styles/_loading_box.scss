@@ -1,0 +1,47 @@
+@use "sass:color";
+@use "vars";
+
+$loading-box-padding: 1px;
+
+.loading-box {
+    position: relative;
+
+    border-radius: vars.$border-radius-large;
+
+    background: linear-gradient(
+            to right,
+            rgba(vars.$color-dark, 0) 8%,
+            rgba(vars.$color-dark, 0.3) 38%,
+            rgba(vars.$color-dark, 0) 54%
+        )
+        no-repeat;
+    background-size: 1500px 100%;
+    animation: loading-box-glow 1s infinite linear;
+
+    overflow: hidden;
+
+    &::after {
+        content: "";
+
+        position: absolute;
+        top: $loading-box-padding;
+        right: $loading-box-padding;
+        bottom: $loading-box-padding;
+        left: $loading-box-padding;
+
+        border-radius: calc(vars.$border-radius-large - $loading-box-padding);
+        background-color: color.adjust(vars.$color-background, $lightness: -10%);
+        background-image: url("/assets/Noise.png");
+
+        opacity: 0.9;
+    }
+}
+
+@keyframes loading-box-glow {
+    0% {
+        background-position: -750px 0;
+    }
+    100% {
+        background-position: 750px 0;
+    }
+}

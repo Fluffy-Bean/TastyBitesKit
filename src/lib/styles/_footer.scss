@@ -1,0 +1,63 @@
+@use "vars";
+
+footer {
+    padding: vars.$spacing-normal;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    border-top: 3px solid vars.$color-primary;
+    background-color: vars.$color-dark;
+    color: vars.$color-on-dark;
+
+    overflow: hidden;
+}
+
+.footer-section {
+    padding: vars.$spacing-normal;
+
+    min-width: 200px;
+    width: 100%;
+    max-width: 500px;
+
+    > ul {
+        padding: 0;
+
+        display: flex;
+        flex-direction: row;
+
+        > li {
+            margin: 0 vars.$spacing-small 0 0;
+            list-style: none;
+
+            > a {
+                height: 40px;
+                width: 40px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                text-decoration: none;
+                font-size: 16px;
+
+                border-radius: vars.$border-radius-circle;
+                background-color: transparent;
+                color: vars.$color-on-dark;
+
+                &:hover {
+                    background-color: vars.$color-light;
+                    color: vars.$color-on-light;
+                }
+            }
+        }
+    }
+
+    > h4 {
+        margin-bottom: vars.$spacing-xsmall;
+    }
+}

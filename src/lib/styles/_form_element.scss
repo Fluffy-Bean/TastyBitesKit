@@ -1,0 +1,72 @@
+@use "vars";
+
+.form-element {
+    width: fit-content;
+    overflow: hidden;
+}
+
+.form-label {
+    padding: vars.$spacing-xsmall;
+
+    display: block;
+    font-size: vars.$font-size-small;
+    text-shadow: 0 1px 0.5px rgba(#000, 0.2);
+
+    color: vars.$color-on-background;
+}
+
+.form-input {
+    padding: vars.$spacing-small;
+
+    display: block;
+
+    font-family: vars.$font-family;
+    font-size: vars.$font-size-p;
+
+    border: 1px solid vars.$color-light;
+    border-radius: vars.$border-radius-normal;
+    background-color: vars.$color-light;
+    color: vars.$color-on-light;
+
+    &:hover {
+        border: 1px solid rgba(vars.$color-dark, 0.4);
+    }
+    &:focus-visible {
+        border: 1px solid rgba(vars.$color-primary, 0.9);
+        outline: 0 solid transparent;
+    }
+}
+
+.form-notice {
+    height: 16px;
+
+    padding: 0 vars.$spacing-xsmall;
+    display: block;
+    font-size: vars.$font-size-xsmall;
+    text-shadow: 0 1px 0.5px rgba(#000, 0.2);
+    color: rgba(vars.$color-on-background, 0.7);
+
+    &.error {
+        color: vars.$color-error;
+    }
+}
+
+.form-message {
+    margin-bottom: vars.$spacing-small;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    text-shadow: 0 1px 0.5px rgba(#000, 0.2);
+    border-radius: vars.$border-radius-normal;
+    color: vars.$color-on-background;
+
+    &.success {
+        color: vars.$color-primary;
+    }
+    &.error {
+        color: vars.$color-error;
+    }
+}

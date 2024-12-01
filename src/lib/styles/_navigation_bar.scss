@@ -1,0 +1,109 @@
+@use "vars";
+
+nav {
+    padding: vars.$spacing-small vars.$spacing-normal;
+
+    width: 100%;
+    height: vars.$sizing-navigation-height;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    border-bottom: 3px solid vars.$color-primary;
+    background-color: vars.$color-dark;
+    color: vars.$color-light;
+
+    z-index: 9999999;
+
+    ul {
+        padding: 0;
+
+        width: 300px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        list-style: none;
+
+        li {
+            font-weight: vars.$font-weight-normal;
+            font-size: vars.$font-size-h6;
+            border-radius: vars.$border-radius-circle;
+
+            a {
+                padding: vars.$spacing-xsmall vars.$spacing-normal;
+
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+
+                text-decoration: none;
+                text-shadow: 0 1px 0.5px rgba(#000, 0.8);
+
+                color: inherit;
+
+                .nav-basket {
+                    padding: 0 vars.$spacing-xsmall;
+
+                    min-width: 18px;
+                    min-height: 18px;
+
+                    display: inline-block;
+
+                    font-size: vars.$font-size-small;
+
+                    border-radius: vars.$border-radius-circle;
+                    background-color: vars.$color-light;
+                    color: vars.$color-on-light;
+
+                    img {
+                        width: 10px;
+                    }
+                }
+            }
+
+            &:hover {
+                background-color: rgba(vars.$color-light, 0.05);
+            }
+
+            &.active {
+                color: vars.$color-primary !important;
+
+                .nav-basket {
+                    background-color: vars.$color-primary;
+                    color: vars.$color-on-primary;
+                }
+            }
+        }
+    }
+
+    .nav-logo {
+        padding: 0 vars.$spacing-normal;
+        font-weight: vars.$font-weight-black;
+        font-size: vars.$font-size-h1;
+
+        > img {
+            height: calc(vars.$sizing-navigation-height - calc(2 * vars.$spacing-small));
+            display: block;
+        }
+    }
+
+    &.scrolled {
+        box-shadow: 0 0 3px 1px rgba(#000, 0.8);
+    }
+
+    &.mobile {
+        ul {
+            width: 100%;
+            justify-content: space-around;
+        }
+    }
+}
